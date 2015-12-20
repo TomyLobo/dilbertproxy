@@ -13,7 +13,7 @@ get '/dilbert' do
   xml_doc.root.add_namespace_definition('atom', "http://www.w3.org/2005/Atom")
 
   xml_doc.xpath('/atom:feed/atom:entry').each do |entry|
-    url = entry.xpath('feedburner:origLink/text()').to_s
+    url = entry.xpath('feedburner:origLink/text()')[0].content
     html = open(url) do |response|
       response.read.to_s
     end
