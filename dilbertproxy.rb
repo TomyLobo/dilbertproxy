@@ -22,6 +22,9 @@ get '/dilbert' do
 
     img = html_doc.css('.img-comic')[0]
     entry.xpath('atom:content')[0].content = img.to_s
+
+    updated_node = entry.xpath('atom:updated')[0]
+    updated_node.content = updated_node.content.gsub('23:59:59', '00:00:00')
   end
 
   content_type 'text/xml'
